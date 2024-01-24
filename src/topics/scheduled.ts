@@ -1,16 +1,14 @@
-'use strict';
+import * as _ from 'lodash';
+import * as winston from 'winston';
+import { CronJob } from 'cron';
 
-const _ = require('lodash');
-const winston = require('winston');
-const { CronJob } = require('cron');
+import * as db from '../database';
+import * as posts from '../posts';
+import * as socketHelpers from '../socket.io/helpers';
+import * as topics from './index';
+import * as user from '../user';
 
-const db = require('../database');
-const posts = require('../posts');
-const socketHelpers = require('../socket.io/helpers');
-const topics = require('./index');
-const user = require('../user');
-
-const Scheduled = module.exports;
+export const Scheduled: Record<string, any> = {};
 
 Scheduled.startJobs = function () {
     winston.verbose('[scheduled topics] Starting jobs.');
