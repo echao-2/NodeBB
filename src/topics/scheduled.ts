@@ -84,7 +84,7 @@ function unpin(tid: string, topicData: any) {
     ];
 }
 
-async function sendNotifications(uids: string[], topicsData: any[]) {
+async function sendNotifications(uids, topicsData: any[]) {
     const usernames = await Promise.all(uids.map(uid => user.getUserField(uid, 'username')));
     const uidToUsername = Object.fromEntries(uids.map((uid, idx) => [uid, usernames[idx]]));
 
@@ -104,7 +104,7 @@ async function sendNotifications(uids: string[], topicsData: any[]) {
     ));
 }
 
-async function updateUserLastposttimes(uids: string[], topicsData: any[]) {
+async function updateUserLastposttimes(uids, topicsData: any[]) {
     const lastposttimes = (await user.getUsersFields(uids, ['lastposttime'])).map(u => u.lastposttime);
 
     let tstampByUid: Record<string, number[]> = {};
