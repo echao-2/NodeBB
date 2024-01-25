@@ -84,7 +84,11 @@ function unpin(tid: string, topicData: any) {
     ];
 }
 
+<<<<<<< HEAD
 async function sendNotifications(uids, topicsData: any[]) {
+=======
+async function sendNotifications(uids: string[], topicsData: any[]) {
+>>>>>>> a3128dab3217c4b2bfeed5cbb976d1d3868cbde2
     const usernames = await Promise.all(uids.map(uid => user.getUserField(uid, 'username')));
     const uidToUsername = Object.fromEntries(uids.map((uid, idx) => [uid, usernames[idx]]));
 
@@ -104,7 +108,11 @@ async function sendNotifications(uids, topicsData: any[]) {
     ));
 }
 
+<<<<<<< HEAD
 async function updateUserLastposttimes(uids, topicsData: any[]) {
+=======
+async function updateUserLastposttimes(uids: string[], topicsData: any[]) {
+>>>>>>> a3128dab3217c4b2bfeed5cbb976d1d3868cbde2
     const lastposttimes = (await user.getUsersFields(uids, ['lastposttime'])).map(u => u.lastposttime);
 
     let tstampByUid: Record<string, number[]> = {};
@@ -124,4 +132,8 @@ async function shiftPostTimes(tid: string, timestamp: number) {
     // Leaving other related score values intact, since they reflect post order correctly,
     // and it seems that's good enough
     return db.setObjectBulk(pids.map((pid: string, idx: number) => [`post:${pid}`, { timestamp: timestamp + idx + 1 }]));
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> a3128dab3217c4b2bfeed5cbb976d1d3868cbde2
